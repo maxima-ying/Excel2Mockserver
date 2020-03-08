@@ -1,7 +1,5 @@
 # Postman验证guide
 
-[返回Readme](../Readme.md#getting-start)
-
 + 先导入postman的collection
 ![咦](pic/postman01_import.PNG "Postman验证guide的截图")  
   
