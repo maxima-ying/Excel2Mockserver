@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "exceljs": "^3.8.1"
+    "exceljs": "^3.8.1",
+    "mockserver-client": "^5.9.0"
   }
 }
