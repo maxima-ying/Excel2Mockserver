@@ -11,10 +11,29 @@ write multi requests in Excel files and send it to Mockserver by nodejs
 1. 用nodejs的代码，把指定目录里的json文件都读进来，提交到mockserver上去
 
 
-GETTING START
+## GETTING START  
+
+1. 启动mockserver(我用的是docker版)  
+    + Pull MockServer Image  
+        
+        docker pull mockserver/mockserver
+    [参照mock-server的网站](https://www.mock-server.com/mock_server/running_mock_server.html#docker_container)  
+    + 启动  mockerserver   
+        ```
+        docker run -d --rm -p 1080:1080 mockserver/mockserver  
+        ```
+1. 安装nodejs模块  
+   ```
+   npm install exceljs mockserver-client -save
+   ```
+1. 运行  
+   ```
+   node step1.readExcel.js  
+   node step2.sendToMockerServer.js  
+   ```
 
 
-### 详细  
+## 实例演示  
 * 准备工作  看一下excel例子里面的API设定  
 ![找不到图片excel01.PNG](pic/excel01.PNG "Excel文件的样子")  
 <br>
