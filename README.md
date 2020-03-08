@@ -31,6 +31,8 @@ write multi requests in Excel files and send it to Mockserver by nodejs
    node step1.readExcel.js  
    node step2.sendToMockerServer.js  
    ```
+1. 用Postman验证登录成功的mock api  
+具体参照[Postman验证guide](PostmanFiles/Postman_verify_guide.md)
 
 
 ## 实例演示  
