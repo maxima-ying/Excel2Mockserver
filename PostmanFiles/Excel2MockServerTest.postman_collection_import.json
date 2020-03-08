@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "73fc9db9-79b3-4402-afd8-6fd058383eeb",
+		"name": "Excel2MockServerTest_import",
+		"description": "写了一个把Excel中列出的mock发布到mockServer上去的工具，在这里验证一下发布上去的那些Mock API是不是管用",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mock01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fba12ece-ba19-4c80-877d-de5dc627f2f0",
+						"exec": [
+							"pm.test(\"mock01:验证返回值201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,999]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:1080/p1",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						"p1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "mock02",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1080/p2",
+							"host": [
+								"localhost"
+							],
+							"port": "1080",
+							"path": [
+								"p2"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "content-length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "mock01",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:1080/p1",
+							"host": [
+								"localhost"
+							],
+							"port": "1080",
+							"path": [
+								"p1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "content-length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "mock02",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52e5e375-fe3f-4114-afc2-f0c869f96bf2",
+						"exec": [
+							"pm.test(\"mock02, 验证返回值202\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([202,999]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mock02, 验证返回值body\", function () {\r",
+							"    //console.log(\"pm.response.stream :\", new String(pm.response.stream));\r",
+							"    //console.log(\"pm.response.stream :\", pm.response.stream.toString());\r",
+							"    pm.expect(pm.response.stream.toString()).to.be.equal('some_response_body');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:1080/p2",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						"p2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mock03",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52e5e375-fe3f-4114-afc2-f0c869f96bf2",
+						"exec": [
+							"pm.test(\"mock03, 验证返回值203\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(203);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mock03, 验证返回值body为空\", function () {\r",
+							"    pm.expect(pm.response.stream.toString()).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PURGE",
+				"header": [],
+				"url": {
+					"raw": "localhost:1080/p3",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						"p3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mock04",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52e5e375-fe3f-4114-afc2-f0c869f96bf2",
+						"exec": [
+							"pm.test(\"mock04, 验证返回值200 虽然设为了302，但是header里有Location，所以变为了200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([302,200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mock04, 验证返回值body为空\", function () {\r",
+							"    console.log(\"pm.response :\", pm.response);\r",
+							"    //pm.expect(pm.response.stream.toString()).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"username\": \"foo\",\r\n            \"password\": \"bar\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1080/p4",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						"p4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mock04_没带参数找不到",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52e5e375-fe3f-4114-afc2-f0c869f96bf2",
+						"exec": [
+							"pm.test(\"mock04, 没带body参数，找不到，验证返回值404\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:1080/p4",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						"p4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mock05",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52e5e375-fe3f-4114-afc2-f0c869f96bf2",
+						"exec": [
+							"pm.test(\"mock04, 验证返回值302\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(302);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mock04, 验证返回值body为空\", function () {\r",
+							"    console.log(\"pm.response :\", new String(pm.response));\r",
+							"    pm.expect(pm.response.stream.toString()).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"username\": \"foo\",\r\n            \"password\": \"bar\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:1080/p5",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						"p5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
